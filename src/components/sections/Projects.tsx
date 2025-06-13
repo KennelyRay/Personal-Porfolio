@@ -85,7 +85,7 @@ export default function Projects() {
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
           className="absolute w-full h-px bg-gradient-to-r from-transparent via-green-400 to-transparent"
-          animate={{ y: [0, window.innerHeight || 800] }}
+          animate={{ y: [0, typeof window !== 'undefined' ? window.innerHeight : 800] }}
           transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
         />
       </div>

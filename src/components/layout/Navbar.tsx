@@ -19,30 +19,36 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
+      if (typeof window !== 'undefined') {
+        setIsScrolled(window.scrollY > 20)
+      }
     }
 
     const handleSectionChange = () => {
-      const sections = navItems.map(item => item.name)
-      const scrollPosition = window.scrollY + 100
+      if (typeof window !== 'undefined') {
+        const sections = navItems.map(item => item.name)
+        const scrollPosition = window.scrollY + 100
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.getElementById(sections[i])
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i])
-          break
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const section = document.getElementById(sections[i])
+          if (section && section.offsetTop <= scrollPosition) {
+            setActiveSection(sections[i])
+            break
+          }
         }
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
-    window.addEventListener('scroll', handleSectionChange)
-    handleScroll()
-    handleSectionChange()
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', handleScroll)
+      window.addEventListener('scroll', handleSectionChange)
+      handleScroll()
+      handleSectionChange()
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('scroll', handleSectionChange)
+      return () => {
+        window.removeEventListener('scroll', handleScroll)
+        window.removeEventListener('scroll', handleSectionChange)
+      }
     }
   }, [])
 

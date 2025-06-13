@@ -93,7 +93,7 @@ export default function Contact() {
               top: '0%',
             }}
             animate={{
-              y: [0, window.innerHeight || 800],
+              y: [0, typeof window !== 'undefined' ? window.innerHeight : 800],
               opacity: [0, 0.5, 0],
             }}
             transition={{
