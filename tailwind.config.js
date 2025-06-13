@@ -92,7 +92,7 @@ module.exports = {
       },
       fontFamily: {
         'sans': ['Inter', 'ui-sans-serif', 'system-ui'],
-        'mono': ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular'],
+        'mono': ['var(--font-mono)', 'JetBrains Mono', 'ui-monospace', 'SFMono-Regular'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
