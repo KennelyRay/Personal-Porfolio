@@ -7,7 +7,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4-38B2AC)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer%20Motion-11.0-ff69b4)](https://framer.com/motion/)
 
-A modern, responsive portfolio website showcasing the academic and professional journey of Kennely Ray Bucang, a Bachelor of Science in Information Technology student at Saint Louis University.
+A  portfolio website showcasing my academic and professional journey as a Bachelor of Science in Information Technology student at Saint Louis University.
 
 ## 🌟 Features
 
@@ -18,7 +18,6 @@ A modern, responsive portfolio website showcasing the academic and professional 
 - **Performance Optimized**: Built with Next.js 14 for optimal performance
 - **TypeScript**: Fully typed for better development experience
 - **Professional Sections**: 
-  - Hero section with professional photo
   - About section with educational background
   - Skills showcase with proficiency levels
   - Project portfolio with GitHub integration
