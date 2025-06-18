@@ -1,14 +1,20 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Mail, Github, Linkedin, MessageCircle, Send, Shield, Wifi, Database } from 'lucide-react'
 
 export default function Contact() {
+  const [mounted, setMounted] = useState(false)
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   })
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const testimonials = [
     {
@@ -69,6 +75,16 @@ export default function Contact() {
     }
   ]
 
+  if (!mounted) {
+    return (
+      <section id="contact" className="py-24 bg-black relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-center">
+          <div className="loading-spinner"></div>
+        </div>
+      </section>
+    )
+  }
+
   return (
     <section id="contact" className="py-24 bg-black relative overflow-hidden">
       {/* Background Matrix Effect */}
@@ -93,7 +109,7 @@ export default function Contact() {
               top: '0%',
             }}
             animate={{
-              y: [0, typeof window !== 'undefined' ? window.innerHeight : 800],
+              y: [0, 800],
               opacity: [0, 0.5, 0],
             }}
             transition={{

@@ -1,15 +1,20 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ExternalLink, Github, Folder, Star, Zap } from 'lucide-react'
 
 export default function Projects() {
+  const [mounted, setMounted] = useState(false)
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   })
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const projects = [
     {
@@ -21,6 +26,17 @@ export default function Projects() {
       status: 'DEPLOYED',
       featured: true,
       glowColor: 'green'
+    },
+    {
+      title: 'VertixHub_Ecommerce',
+      category: 'Web_Development',
+      description: 'Premier destination for high-performance PC components and gaming hardware with modern ecommerce functionality and responsive design.',
+      technologies: ['HTML', 'CSS', 'JavaScript', 'Responsive_Design'],
+      github: 'https://github.com/KennelyRay/E-Commerce-Website',
+      demo: 'https://kennelyray.github.io/E-Commerce-Website/home/',
+      status: 'DEPLOYED',
+      featured: false,
+      glowColor: 'orange'
     },
     {
       title: 'Navibot_AI',
@@ -55,8 +71,8 @@ export default function Projects() {
   ]
 
   const categories = [
-    { name: 'All_Projects', count: 4, filter: 'all' },
-    { name: 'Web_Development', count: 3, filter: 'Web_Development' },
+    { name: 'All_Projects', count: 5, filter: 'all' },
+    { name: 'Web_Development', count: 4, filter: 'Web_Development' },
     { name: 'AI_ML', count: 1, filter: 'AI_ML' }
   ]
 
@@ -67,6 +83,16 @@ export default function Projects() {
     : projects.filter(project => project.category === activeFilter)
 
   const featuredProject = projects.find(p => p.featured)
+
+  if (!mounted) {
+    return (
+      <section id="work" className="py-24 bg-black relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-center">
+          <div className="loading-spinner"></div>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section id="work" className="py-24 bg-black relative overflow-hidden">
@@ -85,7 +111,7 @@ export default function Projects() {
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
           className="absolute w-full h-px bg-gradient-to-r from-transparent via-green-400 to-transparent"
-          animate={{ y: [0, typeof window !== 'undefined' ? window.innerHeight : 800] }}
+          animate={{ y: [0, 800] }}
           transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
         />
       </div>
@@ -271,7 +297,7 @@ export default function Projects() {
                   ))}
                 </div>
 
-                {/* Status and Link */}
+                {/* Status and Links */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className={`w-2 h-2 bg-${project.glowColor}-400 rounded-full animate-pulse`}></div>
@@ -280,14 +306,26 @@ export default function Projects() {
                     </span>
                   </div>
                   
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-500 hover:text-cyan-400 transition-colors duration-200 font-mono text-sm"
-                  >
-                    view_code() →
-                  </a>
+                  <div className="flex items-center gap-3">
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-500 hover:text-orange-400 transition-colors duration-200 font-mono text-sm"
+                      >
+                        live_demo() →
+                      </a>
+                    )}
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-500 hover:text-cyan-400 transition-colors duration-200 font-mono text-sm"
+                    >
+                      view_code() →
+                    </a>
+                  </div>
                 </div>
               </div>
             </motion.div>
